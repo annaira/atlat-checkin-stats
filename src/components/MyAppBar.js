@@ -4,7 +4,7 @@ import { AppBar, AppBarSection, AppBarSpacer, Avatar } from '@progress/kendo-rea
 import { Badge, BadgeContainer } from '@progress/kendo-react-indicators';
 let kendokaAvatar = 'https://www.telerik.com/kendo-react-ui-develop/images/kendoka-react.png';
 
-const App = () => {
+const MyAppBar = () => {
     return <React.Fragment>
         <AppBar>
             <AppBarSection>
@@ -18,7 +18,7 @@ const App = () => {
             }} />
 
             <AppBarSection>
-                <h1 className="title">KendoReact</h1>
+                <h1 className="title">atlat Checkin Statistics</h1>
             </AppBarSection>
 
             <AppBarSpacer style={{
@@ -85,3 +85,5 @@ const App = () => {
             `}</style>
     </React.Fragment>;
 };
+
+export default MyAppBar;
