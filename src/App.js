@@ -1,50 +1,119 @@
-import React from 'react';
+import React, {Component} from 'react';
 import '@progress/kendo-theme-default/dist/all.css';
 import './App.css';
-import { Grid, GridColumn as Column } from "@progress/kendo-react-grid";
-import products from "./products.json";
+import categories from './categories.json';
+import products from './products.json';
+import {process} from '@progress/kendo-data-query';
+import {Grid, GridColumn} from '@progress/kendo-react-grid';
+import {DropDownList} from '@progress/kendo-react-dropdowns';
+import {Window} from '@progress/kendo-react-dialogs';
 
-const availableProducts = products.slice();
-const initialProducts = availableProducts.splice(0, 20);
+class App extends Component {
 
+    state = {
+        dropdownlistCategory: null,
+        gridDataState: {
+            sort: [
+                {field: "ProductName", dir: "asc"}
+            ],
+            skip: 0,
+            take: 10
+        },
+        windowVisible: false,
+        gridClickedRow: {}
+    }
 
-const App = () => {
-    const [gridData, setGridData] = React.useState(initialProducts);
-
-    const scrollHandler = (event) => {
-        const e = event.nativeEvent;
-
-        if (
-            e.target.scrollTop + 10 >=
-            e.target.scrollHeight - e.target.clientHeight
-        ) {
-            const moreData = availableProducts.splice(0, 10);
-
-            if (moreData.length > 0) {
-                setGridData((oldData) => oldData.concat(moreData));
+    handleDropDownChange = (e) => {
+        let newDataState = {...this.state.gridDataState}
+        if (e.target.value.CategoryID !== null) {
+            newDataState.filter = {
+                logic: 'and',
+                filters: [{field: 'CategoryID', operator: 'eq', value: e.target.value.CategoryID}]
             }
+            newDataState.skip = 0
+        } else {
+            newDataState.filter = []
+            newDataState.skip = 0
         }
-    };
-    return (
-        <div>
-            <Grid
-                style={{
-                    height: "400px",
-                }}
-                data={gridData}
-                onScroll={scrollHandler}
-            >
-                <Column field="ProductID" title="ID" width="40px"/>
-                <Column field="ProductName" title="Name" width="250px"/>
-                <Column field="Discontinued" width="250px"/>
-                <Column field="UnitPrice" width="250px"/>
-                <Column field="QuantityPerUnit" width="250px"/>
-                <Column field="Category.CategoryName" width="250px"/>
-            </Grid>
-            <br/>
-            showing: {gridData.length} items
-        </div>
-    );
-};
+        this.setState({
+            dropdownlistCategory: e.target.value.CategoryID,
+            gridDataState: newDataState
+        });
+    }
+
+    handleGridDataStateChange = (e) => {
+        this.setState({gridDataState: e.dataState});
+    }
+
+    handleGridRowClick = (e) => {
+        this.setState({
+            windowVisible: true,
+            gridClickedRow: e.dataItem
+        });
+    }
+
+    closeWindow = (e) => {
+        this.setState({
+            windowVisible: false
+        });
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <h1>Hello KendoReact!</h1>
+                <p>
+                    <DropDownList
+                        data={categories}
+                        dataItemKey="CategoryID"
+                        textField="CategoryName"
+                        defaultItem={{CategoryID: null, CategoryName: "Product categories"}}
+                        onChange={this.handleDropDownChange}
+                    />
+                    &nbsp; Selected category ID: <strong>{this.state.dropdownlistCategory}</strong>
+                </p>
+
+                <Grid
+                    data={process(products, this.state.gridDataState)}
+                    pageable={true}
+                    sortable={true}
+                    onRowClick={this.handleGridRowClick}
+                    {...this.state.gridDataState}
+                    onDataStateChange={this.handleGridDataStateChange}
+                    style={{height: "400px"}}>
+                    <GridColumn field="ProductName" title="Product Name"/>
+                    <GridColumn field="UnitPrice" title="Price" format="{0:c}"/>
+                    <GridColumn field="UnitsInStock" title="Units in Stock"/>
+                    <GridColumn field="Discontinued" cell={checkboxColumn}/>
+                </Grid>
+                {this.state.windowVisible &&
+                <Window
+                    title="Product Details"
+                    onClose={this.closeWindow}
+                    height={250}>
+                    <dl style={{textAlign: "left"}}>
+                        <dt>Product Name</dt>
+                        <dd>{this.state.gridClickedRow.ProductName}</dd>
+                        <dt>Product ID</dt>
+                        <dd>{this.state.gridClickedRow.ProductID}</dd>
+                        <dt>Quantity per Unit</dt>
+                        <dd>{this.state.gridClickedRow.QuantityPerUnit}</dd>
+                    </dl>
+                </Window>
+                }
+            </div>
+        );
+    }
+}
+
+class checkboxColumn extends Component {
+    render() {
+        return (
+            <td>
+                <input type="checkbox" checked={this.props.dataItem[this.props.field]} disabled="disabled"/>
+            </td>
+        );
+    }
+}
 
 export default App;
