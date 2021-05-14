@@ -1,49 +1,16 @@
 import * as React from 'react';
-import {DropDownList} from "@progress/kendo-react-dropdowns";
-import factories from "../../factories.json";
+import {useState} from 'react';
 import {Grid, GridColumn} from "@progress/kendo-react-grid";
 import {process} from "@progress/kendo-data-query";
-import data from "../../data.json";
 import {Window} from "@progress/kendo-react-dialogs";
-import {useState} from "react";
 
-const CheckinGrid = () => {
+const CheckinGrid = ({data, setGridState, gridState, filter}) => {
 
     const [windowVisible, setWindowVisible] = useState(false);
-    const [selectedFactory, setSelectedFactory] = useState(null);
     const [gridClickedRow, setGridClickedRow] = useState({});
 
-    const [gridState, setGridState] = useState({
-        gridDataState: {
-            sort: [
-                {field: "year", dir: "asc"}
-            ],
-            skip: 0,
-            take: 10
-        },
-    });
-
-
-    const handleDropDownChange = (e) => {
-        let newDataState = {...gridState.gridDataState};
-        if (e.target.value.factoryID !== null) {
-            newDataState.filter = {
-                logic: 'and',
-                filters: [{field: 'factoryID', operator: 'eq', value: e.target.value.factoryID}]
-            };
-            newDataState.skip = 0
-        } else {
-            newDataState.filter = [];
-            newDataState.skip = 0
-        }
-        setSelectedFactory(e.target.value.factoryID);
-        setGridState({
-            gridDataState: newDataState
-        });
-    };
-
     const handleGridDataStateChange = (e) => {
-        setGridState({gridDataState: e.dataState});
+        setGridState( e.dataState);
     };
 
     const handleGridRowClick = (e) => {
@@ -55,25 +22,13 @@ const CheckinGrid = () => {
         setWindowVisible(false);
     };
 
-
     return <>
-        <p>
-            <DropDownList
-                data={factories}
-                dataItemKey="factoryID"
-                textField="factoryName"
-                defaultItem={{factoryID: null, factoryName: "Factories"}}
-                onChange={handleDropDownChange}
-            />
-            &nbsp; Selected factory ID: <strong>{selectedFactory}</strong>
-        </p>
-
         <Grid
-            data={process(data, gridState.gridDataState)}
+            data={process(data, gridState)}
             pageable={true}
             sortable={true}
             onRowClick={handleGridRowClick}
-            {...gridState.gridDataState}
+            {...gridState}
             onDataStateChange={handleGridDataStateChange}
             style={{height: "400px"}}>
             <GridColumn field="factoryID" title="Factory ID"/>

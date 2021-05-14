@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import '@progress/kendo-theme-default/dist/all.css';
 import './App.css';
 import MyAppBar from "./components/MyAppBar";
-import CheckinGrid from "./components/CheckinGrid/CheckinGrid";
+import Tiles from "./components/TileLayout/Tiles";
 
 class App extends Component {
 
@@ -10,7 +10,7 @@ class App extends Component {
         return (
             <div className="App">
                 <MyAppBar/>
-                <CheckinGrid/>
+                <Tiles/>
             </div>
         );
     }
