@@ -1,41 +1,39 @@
 import * as React from "react";
-import {
-    Chart,
-    ChartArea,
-    ChartSeries,
-    ChartSeriesItem,
-    ChartCategoryAxis,
-    ChartCategoryAxisItem,
-    ChartValueAxis,
-    ChartValueAxisItem
-} from "@progress/kendo-react-charts";
+import {Chart, ChartLegend, ChartSeries, ChartSeriesItem, ChartTooltip} from "@progress/kendo-react-charts";
 
 const GenderPie = ({data}) => {
-    const dates = [];
-    const views = [];
-    data.map((item, i) => (dates.push(item.date), views.push(item.value)));
-    return <Chart zoomable={{
-        mousewheel: {
-            lock: "y"
-        }
-    }} style={{
-        height: "100%"
-    }}>
-        <ChartCategoryAxis>
-            <ChartCategoryAxisItem baseUnit="fit" type="date" majorTicks={{
-                visible: false
-            }} categories={dates}/>
-        </ChartCategoryAxis>
-        <ChartValueAxis>
-            <ChartValueAxisItem labels={{
-                step: 2
-            }}/>
-        </ChartValueAxis>
-        <ChartArea background={"white"}/>
+
+    const series = [
+        {
+            category: "Men",
+            value: data.filter(r => r.gender === 'M').length / data.length,
+        },
+        {
+            category: "Women",
+            value: data.filter(r => r.gender === 'W').length / data.length,
+        },
+        {
+            category: "Other",
+            value: data.filter(r => r.gender === 'D').length / data.length,
+        },
+    ];
+
+    return <Chart style={{width: 380}}>
+        <ChartLegend position="bottom"/>
+        <ChartTooltip render={context => {
+            const {
+                category,
+                value
+            } = context.point || context;
+            return <div>{category}: {(value * 100).toFixed(1)}%</div>;
+        }}/>
         <ChartSeries>
-            <ChartSeriesItem type="line" markers={{
-                visible: false
-            }} data={views}/>
+            <ChartSeriesItem
+                type="pie"
+                data={series}
+                field="value"
+                categoryField="category"
+            />
         </ChartSeries>
     </Chart>;
 };

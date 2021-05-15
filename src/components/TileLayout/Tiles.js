@@ -1,12 +1,10 @@
 import * as React from "react";
 import {useState} from "react";
 import {TileLayout} from "@progress/kendo-react-layout";
-import {channelUsers, conversions, pageViews, visitors} from "./tileLayout-data";
+import {conversions} from "./tileLayout-data";
 import ConversionsChart from "./conversions-chart";
 import GenderPie from "./GenderPie";
 import SafetyBar from "./SafetyBar";
-import UsersGrid from "./users-grid";
-import VisitorsDonut from "./visitors-donut";
 import SafetyDonut from "./SafetyDonut";
 import data2 from "../../data.json";
 import Selections from "./Selections";
@@ -44,7 +42,7 @@ const Tiles = () => {
         colSpan: 1,
         rowSpan: 1
     }, {
-        col: 4,
+        col: 4, // GenderPie
         colSpan: 1,
         rowSpan: 2
     }, {
@@ -119,8 +117,8 @@ const Tiles = () => {
         </div>,
         style: {padding: "10px", borderRadius: "15px"}
     }, {
-        header: "Visitors",
-        body: <VisitorsDonut data={visitors}/>,
+        header: "Gender",
+        body: <GenderPie data={data2}/>,
         style: {padding: "10px", borderRadius: "15px"}
     }, {
         header: "Conversions This Month",
