@@ -5,12 +5,13 @@ import BubbleNPSYears from "./BubbleNPSYears";
 import GenderPie from "./GenderPie";
 import SafetyBar from "./SafetyBar";
 import SafetyDonut from "./SafetyDonut";
-import data2 from "../../data.json";
+import data from "../../data.json";
 import Selections from "./Selections";
 import CheckinGrid from "../CheckinGrid/CheckinGrid";
 import NPS from "./NPS";
 import AgePie from "./AgePie";
 import factories from "../../factories.json"
+import GenderComparison from "./GenderComparison";
 
 const Tiles = () => {
     const [positions, setPositions] = useState([{
@@ -48,6 +49,10 @@ const Tiles = () => {
     }, {
         col: 3, // NPS by years in company
         colSpan: 2,
+        rowSpan: 2
+    }, {
+        col: 3,// Gender Comparison
+        colSpan: 3,
         rowSpan: 2
     }]);
 
@@ -101,34 +106,24 @@ const Tiles = () => {
         style: {padding: "10px", borderRadius: "15px"}
     }, {
         header: "Data" + getSelectionString(),
-        body: <CheckinGrid data={data2} gridState={gridState} setGridState={setGridState}/>,
+        body: <CheckinGrid data={data} gridState={gridState} setGridState={setGridState}/>,
         style: {padding: "10px", borderRadius: "15px"}
     }, {
         header: "Work Safety" + getSelectionString(),
-        body: <SafetyBar data={data2} gridState={gridState}/>,
+        body: <SafetyBar data={data} gridState={gridState}/>,
         style: {padding: "10px", borderRadius: "15px"}
     }, {
         header: "Work Safety (proportional)" + getSelectionString(),
-        body: <SafetyDonut data={data2} gridState={gridState}/>,
+        body: <SafetyDonut data={data} gridState={gridState}/>,
         style: {padding: "10px", borderRadius: "15px"}
     }, {
         header: "Net Promoter Scores" + getSelectionString(),
-        body: <NPS data={data2} gridState={gridState}/>,
+        body: <NPS data={data} gridState={gridState}/>,
         style: {padding: "10px", borderRadius: "15px"}
-        // }, {
-        //     header: "Users by Channel",
-        //     body: <UsersGrid data={channelUsers}/>,
-        //     style: {padding: "10px", borderRadius: "15px"}
-        // }, {
-        //     header: "Conversion Rate",
-        //     body: <div>
-        //         <ConversionRate data={channelUsers} />
-        //     </div>,
-        //         style: {padding: "10px", borderRadius: "20px"}
     }, {
 
         header: "Age",
-        body: <AgePie data={data2}/>,
+        body: <AgePie data={data}/>,
         style: {padding: "10px", borderRadius: "15px"}
     }, {
         header: "Bounce Rate",
@@ -145,11 +140,15 @@ const Tiles = () => {
         style: {padding: "10px", borderRadius: "15px"}
     }, {
         header: "Gender",
-        body: <GenderPie data={data2}/>,
+        body: <GenderPie data={data}/>,
         style: {padding: "10px", borderRadius: "15px"}
     }, {
         header: "NPS by years in company",
-        body: <BubbleNPSYears data={data2}/>,
+        body: <BubbleNPSYears data={data}/>,
+        style: {padding: "10px", borderRadius: "15px"}
+    }, {
+        header: "Gender Comparison: Safety",
+        body: <GenderComparison data={data}/>,
         style: {padding: "10px", borderRadius: "15px"}
     }];
 
@@ -159,8 +158,7 @@ const Tiles = () => {
     };
 
     return <TileLayout columns={4} rowHeight={255} positions={positions} gap={{
-        rows: 10,
-        columns: 10
+        rows: 5,       columns: 5
     }} items={tiles} onReposition={handleReposition}/>;
 };
 
