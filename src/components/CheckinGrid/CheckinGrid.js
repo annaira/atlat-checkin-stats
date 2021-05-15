@@ -47,10 +47,11 @@ const CheckinGrid = ({data, setGridState, gridState}) => {
                 onDataStateChange={handleGridDataStateChange}
                 style={{height: "400px"}}>
                 <GridToolbar>
-                    <Button icon="file-excel" primary={true} title="Export Excel" onClick={excelExport}>
+                    <Button icon="file-excel" primary={true} title="Export Excel" onClick={excelExport}
+                            style={{padding: 8}}>
                         Export to Excel
                     </Button>
-                    <Button icon="file-pdf" primary={true} title="Export PDF" onClick={exportPDF}>
+                    <Button icon="file-pdf" primary={true} title="Export PDF" onClick={exportPDF} style={{padding: 8}}>
                         Export to PDF
                     </Button>
                 </GridToolbar>

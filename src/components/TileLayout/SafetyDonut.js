@@ -10,6 +10,7 @@ import {
 } from '@progress/kendo-react-charts';
 import 'hammerjs';
 import {filterBy} from "@progress/kendo-data-query";
+import {error, success, very_good, warning} from "./colors";
 
 const labelContent = e => `${e.category}: \n ${e.value}%`;
 
@@ -28,43 +29,43 @@ const SafetyDonut = ({data, gridState}) => {
     const secondCheckinSafetyBad = filteredData.filter(d => d.checkIn === 2).filter(d => d.safety === "eher unsicher").length;
     const secondCheckinSafetyVeryBad = filteredData.filter(d => d.checkIn === 2).filter(d => d.safety === "sehr unsicher").length;
 
-    const internetGrowthData = [{
+    const checkInData = [{
         "name": "First Check-In",
         "data": [{
             "category": "Very Bad",
             "value": Math.round((firstCheckinSafetyVeryBad / firstCheckinSafety) * 100),
-            "color": "#90cc38"
+            "color": error
         }, {
             "category": "Bad",
             "value": Math.round((firstCheckinSafetyBad / firstCheckinSafety) * 100),
-            "color": "#068c35"
+            "color": warning
         }, {
             "category": "Good",
             "value": Math.round((firstCheckinSafetyGood / firstCheckinSafety) * 100),
-            "color": "#006634"
+            "color": success
         }, {
             "category": "Very Good",
             "value": Math.round((firstCheckinSafetyVeryGood / firstCheckinSafety) * 100),
-            "color": "#004d38"
+            "color": very_good
         }]
     }, {
         "name": "Second Check-In",
         "data": [{
             "category": "Very Bad",
             "value": Math.round((secondCheckinSafetyVeryBad / secondCheckinSafety) * 100),
-            "color": "#90cc38"
+            "color": error
         }, {
             "category": "Bad",
             "value": Math.round((secondCheckinSafetyBad / secondCheckinSafety) * 100),
-            "color": "#068c35"
+            "color": warning
         }, {
             "category": "Good",
             "value": Math.round((secondCheckinSafetyGood / secondCheckinSafety) * 100),
-            "color": "#006634"
+            "color": success
         }, {
             "category": "Very Good",
             "value": Math.round((secondCheckinSafetyVeryGood / secondCheckinSafety) * 100),
-            "color": "#004d38"
+            "color": very_good
         }]
     }];
 
@@ -89,7 +90,7 @@ const SafetyDonut = ({data, gridState}) => {
         <ChartLegend visible={false}/>
         <ChartArea/>
         <ChartSeries>
-            {internetGrowthData.map(mapSeries)}
+            {checkInData.map(mapSeries)}
         </ChartSeries>
     </Chart>;
 };

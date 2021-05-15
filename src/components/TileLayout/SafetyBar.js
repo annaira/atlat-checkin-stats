@@ -10,6 +10,7 @@ import {
 import ChartCategoryAxisTitle from "@progress/kendo-react-charts/dist/es/components/category-axis-item/Title";
 import 'hammerjs';
 import {filterBy} from "@progress/kendo-data-query";
+import {error, success, very_good, warning} from "./colors";
 
 const SafetyBar = ({data, gridState}) => {
 
@@ -32,14 +33,17 @@ const SafetyBar = ({data, gridState}) => {
         </ChartCategoryAxis>
         <ChartArea background={"white"}/>
         <ChartSeries>
-            <ChartSeriesItem type="bar"  name={"Very Good"} tooltip={{    visible: true,}} data={[firstCheckinSafetyVeryGood, secondCheckinSafetyVeryGood]}/>
-            <ChartSeriesItem type="bar"  name={"Good"} tooltip={{    visible: true,}} data={[firstCheckinSafetyGood, secondCheckinSafetyGood]}/>
-            <ChartSeriesItem type="bar"  name={"Bad"} tooltip={{    visible: true,}} data={[firstCheckinSafetyBad, secondCheckinSafetyBad]}/>
-            <ChartSeriesItem type="bar"  name={"Very Bad"} tooltip={{    visible: true,}} data={[firstCheckinSafetyVeryBad, secondCheckinSafetyVeryBad]}/>
+            <ChartSeriesItem type="bar" color={very_good} name={"Very Good"} tooltip={{visible: true,}}
+                             data={[firstCheckinSafetyVeryGood, secondCheckinSafetyVeryGood]}/>
+            <ChartSeriesItem type="bar" color={success} name={"Good"} tooltip={{visible: true,}}
+                             data={[firstCheckinSafetyGood, secondCheckinSafetyGood]}/>
+            <ChartSeriesItem type="bar" color={warning} name={"Bad"} tooltip={{visible: true,}}
+                             data={[firstCheckinSafetyBad, secondCheckinSafetyBad]}/>
+            <ChartSeriesItem type="bar" color={error} name={"Very Bad"} tooltip={{visible: true,}}
+                             data={[firstCheckinSafetyVeryBad, secondCheckinSafetyVeryBad]}/>
         </ChartSeries>
     </Chart>;
 };
-
 
 
 export default SafetyBar;
