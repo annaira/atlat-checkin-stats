@@ -40,10 +40,10 @@ const NPS = ({data, gridState}) => {
 
     return (<div style={{display: 'flex'}}>
         <LinearGauge style={{height: 150}} {...linearOptions}  />
-        <p style={{textAlign: "left"}}>Net Promoter or Net Promoter Score (NPS) is a market research metric that" +
-            " typically takes the form of a single
-            survey question asking respondents to rate the likelihood that they would recommend a company, product, or a
-            service to a friend or colleague. The gauge on the left show the <span style={{color: "#ffd246"}}>NPS for the first
+        <p style={{textAlign: "left"}}>Net Promoter or Net Promoter Score (NPS) is a market research metric that
+            typically takes the form of a single survey question asking respondents to rate the likelihood that they
+            would recommend a company, product, or a service to a friend or colleague. The gauge on the left show
+            the <span style={{color: "#ffd246"}}>NPS for the first
         checkin </span> and the <span style={{color: "#28b4c8"}}>NPS for the second
         checkin </span>.</p>
     </div>);
