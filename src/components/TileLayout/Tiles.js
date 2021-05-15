@@ -11,7 +11,7 @@ import CheckinGrid from "../CheckinGrid/CheckinGrid";
 import NPS from "./NPS";
 import AgePie from "./AgePie";
 import factories from "../../factories.json"
-import GenderComparison from "./GenderComparison";
+import GenderComparisonSafety from "./GenderComparison";
 import Overtime from "./Overtime";
 
 const Tiles = () => {
@@ -139,7 +139,7 @@ const Tiles = () => {
         style: {padding: "10px", borderRadius: "15px"}
     }, {
         header: "Gender Comparison: Safety",
-        body: <GenderComparison data={data}/>,
+        body: <GenderComparisonSafety data={data}/>,
         style: {padding: "10px", borderRadius: "15px"}
     }];
 

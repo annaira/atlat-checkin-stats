@@ -16,7 +16,7 @@ const ratherGood = "eher sicher";
 const ratherBad = "eher unsicher";
 const veryBad = "sehr unsicher";
 
-const GenderComparison = ({data}) => {
+const GenderComparisonSafety = ({data}) => {
     let firstCheckin = data.filter(d => d.checkIn === 1);
     let firstCheckinMen = firstCheckin.filter(d => d.gender === "M");
     let firstCheckinWomen = firstCheckin.filter(d => d.gender === "W");
@@ -62,4 +62,4 @@ const GenderComparison = ({data}) => {
     </Chart>;
 };
 
-export default GenderComparison;
+export default GenderComparisonSafety;
