@@ -18,7 +18,7 @@ const GenderPie = ({data}) => {
         },
     ];
 
-    return <Chart style={{width: 380}}>
+    return <Chart>
         <ChartLegend position="bottom"/>
         <ChartTooltip render={context => {
             const {

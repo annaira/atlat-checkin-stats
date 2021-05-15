@@ -69,8 +69,8 @@ const SafetyDonut = ({data, gridState}) => {
         }]
     }];
 
-    const mapSeries = (series, index, array) => <ChartSeriesItem type="donut" startAngle={150} name={series.name}
-                                                                 data={series.data} field="value"
+    const mapSeries = (series, index, array) => <ChartSeriesItem type="donut" startAngle={90} name={series.name}
+                                                                 data={series.data} field="value" key={series.name}
                                                                  categoryField="category" colorField="color">
         {index === array.length - 1 &&
         <ChartSeriesLabels position="outsideEnd" content={labelContent}/>}
@@ -90,6 +90,8 @@ const SafetyDonut = ({data, gridState}) => {
         <ChartSeries>
             {checkInData.map(mapSeries)}
         </ChartSeries>
+        The inner ring shows the proportional results of the first check-in, and the outher ring shows the proportional
+        results from the second check-in.
     </Chart>;
 };
 
