@@ -8,13 +8,13 @@ const NPS = ({data, gridState}) => {
     const filteredData = filterBy(data, gridState.filter);
 
     const firstCheckin = filteredData.filter(d => d.checkIn === 1).map(d => d.nps);
-    const firstCheckinPromoters = firstCheckin.filter(d => d >= 9).reduce((a, b) => a + b);
-    const firstCheckinDetractors = firstCheckin.filter(d => d <= 6).reduce((a, b) => a + b);
+    const firstCheckinPromoters = firstCheckin.filter(d => d >= 9).reduce((a, b) => a + b, 0);
+    const firstCheckinDetractors = firstCheckin.filter(d => d <= 6).reduce((a, b) => a + b, 0);
     const firstCheckinNPS = ((firstCheckinPromoters - firstCheckinDetractors) / firstCheckin.length) * 100;
 
     const secondCheckin = filteredData.filter(d => d.checkIn === 2).map(d => d.nps);
-    const secondCheckinPromoters = secondCheckin.filter(d => d >= 9).reduce((a, b) => a + b);
-    const secondCheckinDetractors = secondCheckin.filter(d => d <= 6).reduce((a, b) => a + b);
+    const secondCheckinPromoters = secondCheckin.filter(d => d >= 9).reduce((a, b) => a + b, 0);
+    const secondCheckinDetractors = secondCheckin.filter(d => d <= 6).reduce((a, b) => a + b, 0);
     const secondCheckinNPS = ((secondCheckinPromoters - secondCheckinDetractors) / secondCheckin.length) * 100;
 
     const linearOptions = {
