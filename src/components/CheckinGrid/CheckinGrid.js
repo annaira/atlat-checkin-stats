@@ -1,10 +1,11 @@
 import * as React from 'react';
 import {useState} from 'react';
 import {Grid, GridColumn, GridToolbar} from "@progress/kendo-react-grid";
-import {process} from "@progress/kendo-data-query";
+import {filterBy, process} from "@progress/kendo-data-query";
 import {Window} from "@progress/kendo-react-dialogs";
 import {ExcelExport} from '@progress/kendo-react-excel-export';
 import {Button} from "@progress/kendo-react-buttons";
+import {GridPDFExport} from "@progress/kendo-react-pdf";
 
 const CheckinGrid = ({data, setGridState, gridState}) => {
 
@@ -30,9 +31,13 @@ const CheckinGrid = ({data, setGridState, gridState}) => {
         _export.save();
     };
 
+    let _pdfExport;
+    const exportPDF = () => {
+        _pdfExport.save();
+    };
 
     return <>
-        <ExcelExport data={process(data, gridState).data} ref={(exporter) => (_export = exporter)}>
+        <ExcelExport data={filterBy(data, gridState.filter)} ref={(exporter) => (_export = exporter)}>
             <Grid
                 data={process(data, gridState)}
                 pageable={true}
@@ -44,6 +49,9 @@ const CheckinGrid = ({data, setGridState, gridState}) => {
                 <GridToolbar>
                     <Button icon="file-excel" primary={true} title="Export Excel" onClick={excelExport}>
                         Export to Excel
+                    </Button>
+                    <Button icon="file-pdf" primary={true} title="Export PDF" onClick={exportPDF}>
+                        Export to PDF
                     </Button>
                 </GridToolbar>
                 <GridColumn field="factoryID" title="Factory ID"/>
@@ -58,6 +66,24 @@ const CheckinGrid = ({data, setGridState, gridState}) => {
                 <GridColumn field="nps" title="NPS"/>
             </Grid>
         </ExcelExport>
+        <GridPDFExport
+            ref={(element) => {
+                _pdfExport = element;
+            }}
+            margin="1cm">
+            {<Grid data={filterBy(data, gridState.filter)}>
+                <GridColumn field="factoryID" title="Factory ID"/>
+                <GridColumn field="factoryName" title="Factory Name"/>
+                <GridColumn field="year" title="Hired in (year)"/>
+                <GridColumn field="paid" title="Full Payment on time"/>
+                <GridColumn field="overtime" title="Overtime (hours)"/>
+                <GridColumn field="unpaid_overtime" title="Unpaid Overtime (hours)"/>
+                <GridColumn field="age" title="Age"/>
+                <GridColumn field="gender" title="Gender"/>
+                <GridColumn field="safety" title="Safety"/>
+                <GridColumn field="nps" title="NPS"/>
+            </Grid>}
+        </GridPDFExport>
         {windowVisible &&
         <Window
             title="Check-In Data"
