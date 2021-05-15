@@ -11,6 +11,7 @@ import Selections from "./Selections";
 import CheckinGrid from "../CheckinGrid/CheckinGrid";
 import NPS from "./NPS";
 import AgePie from "./AgePie";
+import factories from "../../factories.json"
 
 const Tiles = () => {
     const [positions, setPositions] = useState([{
@@ -30,8 +31,8 @@ const Tiles = () => {
         colSpan: 2,
         rowSpan: 2
     }, {
-        col: 4, // NPS
-        colSpan: 1,
+        col: 2, // NPS
+        colSpan: 2,
         rowSpan: 1
     }, {
         col: 3, // Age
@@ -66,6 +67,33 @@ const Tiles = () => {
         take: 10
     });
 
+    function getSelectedGender() {
+        switch (selectedGender) {
+            case "M" :
+                return "men";
+            case "W" :
+                return "women";
+            case "O" :
+                return "other"
+        }
+    }
+
+    function getSelectedFactory() {
+        return factories.find(f => f.factoryID === selectedFactory).factoryName;
+    }
+
+    function getSelectionString() {
+        let result = "";
+        if (selectedGender || selectedFactory) {
+            result += " (";
+            result += "only ";
+            if (selectedGender) result += getSelectedGender();
+            if (selectedGender && selectedFactory) result += " ";
+            if (selectedFactory) result += "from " + getSelectedFactory();
+            result += ")";
+        }
+        return result;
+    }
 
     const tiles = [{
         header: "Data Selections",
@@ -73,19 +101,19 @@ const Tiles = () => {
                           gridState={gridState} setGridState={setGridState}/>,
         style: {padding: "10px", borderRadius: "15px"}
     }, {
-        header: "Data",
+        header: "Data" + getSelectionString(),
         body: <CheckinGrid data={data2} gridState={gridState} setGridState={setGridState}/>,
         style: {padding: "10px", borderRadius: "15px"}
     }, {
-        header: "Work Safety",
+        header: "Work Safety" + getSelectionString(),
         body: <SafetyBar data={data2} gridState={gridState}/>,
         style: {padding: "10px", borderRadius: "15px"}
     }, {
-        header: "Work Safety (proportional)",
+        header: "Work Safety (proportional)" + getSelectionString(),
         body: <SafetyDonut data={data2} gridState={gridState}/>,
         style: {padding: "10px", borderRadius: "15px"}
     }, {
-        header: "Net Promoter Scores",
+        header: "Net Promoter Scores" + getSelectionString(),
         body: <NPS data={data2} gridState={gridState}/>,
         style: {padding: "10px", borderRadius: "15px"}
         // }, {
