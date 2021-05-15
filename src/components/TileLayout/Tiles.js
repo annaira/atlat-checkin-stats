@@ -1,8 +1,7 @@
 import * as React from "react";
 import {useState} from "react";
 import {TileLayout} from "@progress/kendo-react-layout";
-import {conversions} from "./tileLayout-data";
-import ConversionsChart from "./conversions-chart";
+import BubbleNPSYears from "./BubbleNPSYears";
 import GenderPie from "./GenderPie";
 import SafetyBar from "./SafetyBar";
 import SafetyDonut from "./SafetyDonut";
@@ -35,7 +34,7 @@ const Tiles = () => {
         colSpan: 2,
         rowSpan: 1
     }, {
-        col: 3, // Age
+        col: 4, // Age
         colSpan: 1,
         rowSpan: 2
     }, {
@@ -47,9 +46,9 @@ const Tiles = () => {
         colSpan: 1,
         rowSpan: 2
     }, {
-        col: 3,
+        col: 3, // NPS by years in company
         colSpan: 2,
-        rowSpan: 1
+        rowSpan: 2
     }]);
 
     const [selectedFactory, setSelectedFactory] = useState(null);
@@ -149,8 +148,8 @@ const Tiles = () => {
         body: <GenderPie data={data2}/>,
         style: {padding: "10px", borderRadius: "15px"}
     }, {
-        header: "Conversions This Month",
-        body: <ConversionsChart data={conversions}/>,
+        header: "NPS by years in company",
+        body: <BubbleNPSYears data={data2}/>,
         style: {padding: "10px", borderRadius: "15px"}
     }];
 

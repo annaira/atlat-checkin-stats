@@ -4,10 +4,10 @@ import {
     ChartArea,
     ChartCategoryAxis,
     ChartCategoryAxisItem,
+    ChartCategoryAxisTitle,
     ChartSeries,
     ChartSeriesItem
 } from "@progress/kendo-react-charts";
-import ChartCategoryAxisTitle from "@progress/kendo-react-charts/dist/es/components/category-axis-item/Title";
 import 'hammerjs';
 import {filterBy} from "@progress/kendo-data-query";
 import {error, success, very_good, warning} from "./colors";

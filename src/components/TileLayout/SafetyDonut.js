@@ -3,6 +3,7 @@ import {
     Chart,
     ChartArea,
     ChartLegend,
+    ChartLegendTitle,
     ChartSeries,
     ChartSeriesItem,
     ChartSeriesLabels,
@@ -32,38 +33,38 @@ const SafetyDonut = ({data, gridState}) => {
     const checkInData = [{
         "name": "First Check-In",
         "data": [{
-            "category": "Very Bad",
+            "category": "First Check-In - Very Bad",
             "value": Math.round((firstCheckinSafetyVeryBad / firstCheckinSafety) * 100),
             "color": error
         }, {
-            "category": "Bad",
+            "category": "First Check-In - Bad",
             "value": Math.round((firstCheckinSafetyBad / firstCheckinSafety) * 100),
             "color": warning
         }, {
-            "category": "Good",
+            "category": "First Check-In - Good",
             "value": Math.round((firstCheckinSafetyGood / firstCheckinSafety) * 100),
             "color": success
         }, {
-            "category": "Very Good",
+            "category": "First Check-In - Very Good",
             "value": Math.round((firstCheckinSafetyVeryGood / firstCheckinSafety) * 100),
             "color": very_good
         }]
     }, {
         "name": "Second Check-In",
         "data": [{
-            "category": "Very Bad",
+            "category": "Second Check-In - Very Bad",
             "value": Math.round((secondCheckinSafetyVeryBad / secondCheckinSafety) * 100),
             "color": error
         }, {
-            "category": "Bad",
+            "category": "Second Check-In - Bad",
             "value": Math.round((secondCheckinSafetyBad / secondCheckinSafety) * 100),
             "color": warning
         }, {
-            "category": "Good",
+            "category": "Second Check-In - Good",
             "value": Math.round((secondCheckinSafetyGood / secondCheckinSafety) * 100),
             "color": success
         }, {
-            "category": "Very Good",
+            "category": "Second Check-In - Very Good",
             "value": Math.round((secondCheckinSafetyVeryGood / secondCheckinSafety) * 100),
             "color": very_good
         }]
@@ -85,13 +86,14 @@ const SafetyDonut = ({data, gridState}) => {
             } = context.point || context;
             return <div>{category} ({series.name}): {value}%</div>;
         }}/>
-        <ChartLegend visible={false}/>
+        <ChartLegend position="left"/>
+
         <ChartArea/>
         <ChartSeries>
             {checkInData.map(mapSeries)}
         </ChartSeries>
-        The inner ring shows the proportional results of the first check-in, and the outher ring shows the proportional
-        results from the second check-in.
+        The inner ring shows the proportional results of the first check-in, and the outher ring shows the
+        proportional results from the second check-in.
     </Chart>;
 };
 

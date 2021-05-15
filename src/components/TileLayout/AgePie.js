@@ -1,18 +1,5 @@
 import * as React from "react";
-import {
-    Chart,
-    ChartArea,
-    ChartSeries,
-    ChartSeriesItem,
-    ChartCategoryAxis,
-    ChartCategoryAxisItem,
-    ChartValueAxis,
-    ChartValueAxisItem, ChartTooltip
-} from "@progress/kendo-react-charts";
-import {
-    ChartLegend,
-    ChartTitle,
-} from "@progress/kendo-react-charts";
+import {Chart, ChartLegend, ChartSeries, ChartSeriesItem, ChartTooltip} from "@progress/kendo-react-charts";
 
 const labelContent = (props) => {
     let formatedNumber = Number(props.dataItem.value).toLocaleString(undefined, {
@@ -55,16 +42,16 @@ const AgePie = ({data}) => {
         },
     ];
 
-    return <Chart style={{width:380}}>
+    return <Chart style={{width: 380}}>
         <ChartLegend position="bottom"/>
         <ChartTooltip render={context => {
             const {
                 category,
                 value
             } = context.point || context;
-            return <div>{category} years old: {(value*100).toFixed(1)}%</div>;
+            return <div>{category} years old: {(value * 100).toFixed(1)}%</div>;
         }}/>
-        <ChartSeries style={{width:400}}>
+        <ChartSeries style={{width: 400}}>
             <ChartSeriesItem
                 type="pie"
                 data={series}
