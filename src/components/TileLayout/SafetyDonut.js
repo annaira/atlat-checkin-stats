@@ -76,17 +76,15 @@ const SafetyDonut = ({data, gridState}) => {
         <ChartSeriesLabels position="outsideEnd" content={labelContent}/>}
     </ChartSeriesItem>;
 
-    const renderTooltip = context => {
-        const {
-            category,
-            series,
-            value
-        } = context.point || context;
-        return <div>{category} ({series.name}): {value}%</div>;
-    };
-
     return <Chart>
-        <ChartTooltip render={renderTooltip}/>
+        <ChartTooltip render={context => {
+            const {
+                category,
+                series,
+                value
+            } = context.point || context;
+            return <div>{category} ({series.name}): {value}%</div>;
+        }}/>
         <ChartLegend visible={false}/>
         <ChartArea/>
         <ChartSeries>

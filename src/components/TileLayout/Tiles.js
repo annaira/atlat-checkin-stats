@@ -3,7 +3,7 @@ import {useState} from "react";
 import {TileLayout} from "@progress/kendo-react-layout";
 import {channelUsers, conversions, pageViews, visitors} from "./tileLayout-data";
 import ConversionsChart from "./conversions-chart";
-import PageViewsChart from "./page-views";
+import GenderPie from "./GenderPie";
 import SafetyBar from "./SafetyBar";
 import UsersGrid from "./users-grid";
 import VisitorsDonut from "./visitors-donut";
@@ -12,6 +12,7 @@ import data2 from "../../data.json";
 import Selections from "./Selections";
 import CheckinGrid from "../CheckinGrid/CheckinGrid";
 import NPS from "./NPS";
+import AgePie from "./AgePie";
 
 const Tiles = () => {
     const [positions, setPositions] = useState([{
@@ -35,9 +36,9 @@ const Tiles = () => {
         colSpan: 1,
         rowSpan: 1
     }, {
-        col: 3,
+        col: 3, // Age
         colSpan: 1,
-        rowSpan: 1
+        rowSpan: 2
     }, {
         col: 3,
         colSpan: 1,
@@ -101,8 +102,8 @@ const Tiles = () => {
         //         style: {padding: "10px", borderRadius: "20px"}
     }, {
 
-        header: "Page Views",
-        body: <PageViewsChart data={pageViews}/>,
+        header: "Age",
+        body: <AgePie data={data2}/>,
         style: {padding: "10px", borderRadius: "15px"}
     }, {
         header: "Bounce Rate",

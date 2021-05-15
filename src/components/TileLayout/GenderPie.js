@@ -1,9 +1,16 @@
 import * as React from "react";
-import { Chart, ChartArea, ChartSeries, ChartSeriesItem, ChartCategoryAxis, ChartCategoryAxisItem, ChartValueAxis, ChartValueAxisItem } from "@progress/kendo-react-charts";
+import {
+    Chart,
+    ChartArea,
+    ChartSeries,
+    ChartSeriesItem,
+    ChartCategoryAxis,
+    ChartCategoryAxisItem,
+    ChartValueAxis,
+    ChartValueAxisItem
+} from "@progress/kendo-react-charts";
 
-const PageViewsChart = ({
-                            data
-                        }) => {
+const GenderPie = ({data}) => {
     const dates = [];
     const views = [];
     data.map((item, i) => (dates.push(item.date), views.push(item.value)));
@@ -17,20 +24,20 @@ const PageViewsChart = ({
         <ChartCategoryAxis>
             <ChartCategoryAxisItem baseUnit="fit" type="date" majorTicks={{
                 visible: false
-            }} categories={dates} />
+            }} categories={dates}/>
         </ChartCategoryAxis>
         <ChartValueAxis>
             <ChartValueAxisItem labels={{
                 step: 2
-            }} />
+            }}/>
         </ChartValueAxis>
-        <ChartArea background={"white"} />
+        <ChartArea background={"white"}/>
         <ChartSeries>
             <ChartSeriesItem type="line" markers={{
                 visible: false
-            }} data={views} />
+            }} data={views}/>
         </ChartSeries>
     </Chart>;
 };
 
-export default PageViewsChart;
+export default GenderPie;
