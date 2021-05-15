@@ -11,26 +11,27 @@ import SafetyDonut from "./SafetyDonut";
 import data2 from "../../data.json";
 import Selections from "./Selections";
 import CheckinGrid from "../CheckinGrid/CheckinGrid";
+import NPS from "./NPS";
 
 const Tiles = () => {
     const [positions, setPositions] = useState([{
-        col: 1,
+        col: 1, // Data Selections
         colSpan: 1,
         rowSpan: 1
     }, {
-        col: 1,
+        col: 1, // Data
         colSpan: 3,
         rowSpan: 2
     }, {
-        col: 1,
+        col: 1, // Work Safety
         colSpan: 2,
         rowSpan: 1
     }, {
-        col: 1,
+        col: 1, // Work Safety (proportional)
         colSpan: 2,
         rowSpan: 2
     }, {
-        col: 4,
+        col: 4, // NPS
         colSpan: 1,
         rowSpan: 1
     }, {
@@ -85,9 +86,13 @@ const Tiles = () => {
         body: <SafetyDonut data={data2} gridState={gridState}/>,
         style: {padding: "10px", borderRadius: "15px"}
     }, {
-        header: "Users by Channel",
-        body: <UsersGrid data={channelUsers}/>,
+        header: "Net Promoter Scores",
+        body: <NPS data={data2} gridState={gridState}/>,
         style: {padding: "10px", borderRadius: "15px"}
+        // }, {
+        //     header: "Users by Channel",
+        //     body: <UsersGrid data={channelUsers}/>,
+        //     style: {padding: "10px", borderRadius: "15px"}
         // }, {
         //     header: "Conversion Rate",
         //     body: <div>
