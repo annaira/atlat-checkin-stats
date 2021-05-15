@@ -12,6 +12,7 @@ import NPS from "./NPS";
 import AgePie from "./AgePie";
 import factories from "../../factories.json"
 import GenderComparison from "./GenderComparison";
+import Overtime from "./Overtime";
 
 const Tiles = () => {
     const [positions, setPositions] = useState([{
@@ -121,22 +122,12 @@ const Tiles = () => {
         body: <NPS data={data} gridState={gridState}/>,
         style: {padding: "10px", borderRadius: "15px"}
     }, {
-
         header: "Age",
         body: <AgePie data={data}/>,
         style: {padding: "10px", borderRadius: "15px"}
     }, {
-        header: "Bounce Rate",
-        body: <div>
-            <h3 style={{
-                marginBottom: "-1px",
-                marginTop: "-10px"
-            }}>55%</h3>
-            <p>
-                The percentage of all sessions on your site in which users viewed
-                only a single page.
-            </p>
-        </div>,
+        header: "Overtime" + getSelectionString(),
+        body: <Overtime data={data} gridState={gridState}/>,
         style: {padding: "10px", borderRadius: "15px"}
     }, {
         header: "Gender",
@@ -158,7 +149,7 @@ const Tiles = () => {
     };
 
     return <TileLayout columns={4} rowHeight={255} positions={positions} gap={{
-        rows: 5,       columns: 5
+        rows: 5, columns: 5
     }} items={tiles} onReposition={handleReposition}/>;
 };
 
