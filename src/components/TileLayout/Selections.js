@@ -5,11 +5,11 @@ import {DropDownList} from "@progress/kendo-react-dropdowns";
 const CheckinGrid = ({setSelectedFactory, setSelectedGender, gridState, setGridState}) => {
 
     const handleDropDownChangeFactory = (e) => {
+        const index = gridState.filter.filters.findIndex(f => f.field === "factoryID");
         if (e.target.value.factoryID !== null) {
-            const index = gridState.filter.filters.findIndex(f => f.field === "factoryID");
             if (index === -1) {
                 let newGridstate = gridState;
-                newGridstate.filter.filters =  newGridstate.filter.filters.concat({
+                newGridstate.filter.filters = newGridstate.filter.filters.concat({
                     field: 'factoryID',
                     operator: 'eq',
                     value: e.target.value.factoryID
@@ -24,16 +24,22 @@ const CheckinGrid = ({setSelectedFactory, setSelectedGender, gridState, setGridS
                 };
                 setGridState(newGridstate);
             }
+        } else {
+            if (index !== -1) {
+                let newGridstate = gridState;
+                newGridstate.filter.filters.splice(index, 1);
+                setGridState(newGridstate);
+            }
         }
         setSelectedFactory(e.target.value.factoryID);
     };
 
     const handleDropDownChangeGender = (e) => {
+        const index = gridState.filter.filters.findIndex(f => f.field === "gender");
         if (e.target.value.genderID !== null) {
-            const index = gridState.filter.filters.findIndex(f => f.field === "gender");
             if (index === -1) {
                 let newGridstate = gridState;
-                newGridstate.filter.filters =  newGridstate.filter.filters.concat({
+                newGridstate.filter.filters = newGridstate.filter.filters.concat({
                     field: 'gender',
                     operator: 'eq',
                     value: e.target.value.genderID
@@ -42,6 +48,12 @@ const CheckinGrid = ({setSelectedFactory, setSelectedGender, gridState, setGridS
             } else {
                 let newGridstate = gridState;
                 newGridstate.filter.filters[index] = {field: 'gender', operator: 'eq', value: e.target.value.genderID};
+                setGridState(newGridstate);
+            }
+        } else {
+            if (index !== -1) {
+                let newGridstate = gridState;
+                newGridstate.filter.filters.splice(index, 1);
                 setGridState(newGridstate);
             }
         }
