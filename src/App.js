@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
-import '@progress/kendo-theme-default/dist/all.css';
-import './App.css';
+
+
+import './App.scss';
 import MyAppBar from "./components/MyAppBar";
-import Tiles from "./components/TileLayout/Tiles";
+
+import Tiles from "./components/TileLayout/Tiles"
+
 
 class App extends Component {
 
