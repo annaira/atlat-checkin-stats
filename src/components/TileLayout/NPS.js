@@ -21,12 +21,12 @@ const NPS = ({data, gridState}) => {
         pointer: [
             {
                 value: firstCheckinNPS,
-                color: "#ffd246",
+                color: "#c37370",
                 shape: "arrow",
             },
             {
                 value: secondCheckinNPS,
-                color: "#28b4c8",
+                color: "#2ac6d5",
                 shape: "arrow",
             },
         ],
@@ -44,8 +44,8 @@ const NPS = ({data, gridState}) => {
             that
             typically takes the form of a single survey question asking respondents to rate the likelihood that they
             would recommend a company, product, or a service to a friend or colleague. The gauge on the left show
-            the <span style={{color: "#ffd246"}}>NPS for the first
-        checkin </span> and the <span style={{color: "#28b4c8"}}>NPS for the second
+            the <span style={{color: "#c37370"}}>NPS for the first
+        checkin </span> and the <span style={{color: "#2ac6d5"}}>NPS for the second
         checkin </span>.</p>
     </div>);
 };

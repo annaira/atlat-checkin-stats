@@ -25,8 +25,8 @@ const Overtime = ({data, gridState}) => {
 
     return (
         <div style={{display: "grid", gridTemplateColumns: "175px 175px", padding: 10}}>
-            <div><span style={{color: "#ffd246"}}>First Check-In</ span></div>
-            <div><span style={{color: "#28b4c8"}}>Second Check-In</span></div>
+            <div><span style={{color: "#c37370"}}>First Check-In</ span></div>
+            <div><span style={{color: "#2ac6d5"}}>Second Check-In</span></div>
             <div>{overtimeFirstCheckinAverage.toFixed(2)} hours average overtime</div>
             <div>{overtimeSecondCheckinAverage.toFixed(2)} hours average overtime</div>
             <div>{unpaidOvertimeFirstCheckinAverage.toFixed(2)} hours average unpaid overtime</div>
