@@ -10,11 +10,7 @@ import {
 } from '@progress/kendo-react-charts';
 import 'hammerjs';
 import {error, success, very_good, warning} from "./colors";
-
-const veryGood = "sehr sicher";
-const ratherGood = "eher sicher";
-const ratherBad = "eher unsicher";
-const veryBad = "sehr unsicher";
+import {ratherBad, ratherGood, veryBad, veryGood} from "./safety";
 
 const GenderComparisonSafety = ({data}) => {
     let firstCheckin = data.filter(d => d.checkIn === 1);

@@ -11,19 +11,20 @@ import {
 import 'hammerjs';
 import {filterBy} from "@progress/kendo-data-query";
 import {error, success, very_good, warning} from "./colors";
+import {ratherBad, ratherGood, veryBad, veryGood} from "./safety";
 
 const SafetyBar = ({data, gridState}) => {
 
     const filteredData = filterBy(data, gridState.filter);
 
-    const firstCheckinSafetyVeryGood = filteredData.filter(d => d.checkIn === 1).filter(d => d.safety === "sehr sicher").length;
-    const firstCheckinSafetyGood = filteredData.filter(d => d.checkIn === 1).filter(d => d.safety === "eher sicher").length;
-    const firstCheckinSafetyBad = filteredData.filter(d => d.checkIn === 1).filter(d => d.safety === "eher unsicher").length;
-    const firstCheckinSafetyVeryBad = filteredData.filter(d => d.checkIn === 1).filter(d => d.safety === "sehr unsicher").length;
-    const secondCheckinSafetyVeryGood = filteredData.filter(d => d.checkIn === 2).filter(d => d.safety === "sehr sicher").length;
-    const secondCheckinSafetyGood = filteredData.filter(d => d.checkIn === 2).filter(d => d.safety === "eher sicher").length;
-    const secondCheckinSafetyBad = filteredData.filter(d => d.checkIn === 2).filter(d => d.safety === "eher unsicher").length;
-    const secondCheckinSafetyVeryBad = filteredData.filter(d => d.checkIn === 2).filter(d => d.safety === "sehr unsicher").length;
+    const firstCheckinSafetyVeryGood = filteredData.filter(d => d.checkIn === 1).filter(d => d.safety === veryGood).length;
+    const firstCheckinSafetyGood = filteredData.filter(d => d.checkIn === 1).filter(d => d.safety === ratherGood).length;
+    const firstCheckinSafetyBad = filteredData.filter(d => d.checkIn === 1).filter(d => d.safety === ratherBad).length;
+    const firstCheckinSafetyVeryBad = filteredData.filter(d => d.checkIn === 1).filter(d => d.safety === veryBad).length;
+    const secondCheckinSafetyVeryGood = filteredData.filter(d => d.checkIn === 2).filter(d => d.safety === veryGood).length;
+    const secondCheckinSafetyGood = filteredData.filter(d => d.checkIn === 2).filter(d => d.safety === ratherGood).length;
+    const secondCheckinSafetyBad = filteredData.filter(d => d.checkIn === 2).filter(d => d.safety === ratherBad).length;
+    const secondCheckinSafetyVeryBad = filteredData.filter(d => d.checkIn === 2).filter(d => d.safety === veryBad).length;
 
     return <Chart style={{height: "100%"}}>
         <ChartCategoryAxis>
