@@ -17,7 +17,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/annaira/atlat-checkin-stats">
-    <img src="public/logo_full.png" alt="Logo" width="1195" height="295" />
+    <img src="public/logo_full.png" alt="Logo" width="100%" />
   </a>
 
   <h3 align="center">Check-In - Stats by atlat</h3>
@@ -61,8 +61,7 @@
 We are a social startup invested in improving working conditions for the workers who create the clothes we wear
  everyday. We participated in the [Worthy Web App Challenge](https://progress-worthyweb.devpost.com/) by Progress to create a way to measure the impact of a CSR
   project for worker rights in Pakistan and Vietnam we are currently developing. With Kendo, we easily created a survey
-   as a chat and a dashboard to visualize the results and gather viable insights. You can try out the prototype here
-   : [atlat-checkin-stats.herokuapp.com](https://atlat-checkin-stats.herokuapp.com/)
+   as a chat and a dashboard to visualize the results and gather viable insights. You can try out the prototype here: [atlat-checkin-stats.herokuapp.com](https://atlat-checkin-stats.herokuapp.com/)
 
 
 ### Built With
@@ -71,16 +70,16 @@ We are a social startup invested in improving working conditions for the workers
 
 ### Usage
 We are using a tile layout by KendoReact, you can move the tiles around to create the dashboard you want.
-![Stats Overview][product-screenshot_1]
+[![Stats Overview][product-screenshot_1]](https://atlat-checkin-stats.herokuapp.com/)
 
 The data can be filtered by gender or factory and some graphs even update to reflect the selection.
-![Factory Selection][product-screenshot_2]
+[![Factory Selection][product-screenshot_2]](https://atlat-checkin-stats.herokuapp.com/)
 
 We included stats to highlight gender differences.
-![Stats Overview][product-screenshot_3]
+[![Stats Overview][product-screenshot_3]](https://atlat-checkin-stats.herokuapp.com/)
 
 These stats aim to gather deep insights of the current worker safety situation.
-![Stats Overview][product-screenshot_4]
+[![Stats Overview][product-screenshot_4]](https://atlat-checkin-stats.herokuapp.com/)
 
 ## Run
 
