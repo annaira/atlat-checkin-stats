@@ -61,7 +61,8 @@
 We are a social startup invested in improving working conditions for the workers who create the clothes we wear
  everyday. We participated in the [Worthy Web App Challenge](https://progress-worthyweb.devpost.com/) by Progress to create a way to measure the impact of a CSR
   project for worker rights in Pakistan and Vietnam we are currently developing. With Kendo, we easily created a survey
-   as a chat and a dashboard to visualize the results and gather viable insights. You can try out the prototype here: [atlat-checkin-stats.herokuapp.com](https://atlat-checkin-stats.herokuapp.com/)
+   as a chat and a dashboard to visualize the results and gather viable insights. You can try out the prototype for
+    the dashboard here: [atlat-checkin-stats.herokuapp.com](https://atlat-checkin-stats.herokuapp.com/)
 
 
 ### Built With
